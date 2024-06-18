@@ -1,3 +1,4 @@
+#부모클래스 : 공통 코드를 준비
 class Person:
     def __init__(self, name, phoneNumber):
         self.name = name
@@ -6,12 +7,16 @@ class Person:
     def printInfo(self):
         print("Info(Name:{0}, Phone Number: {1})".format(self.name, self.phoneNumber))
 
+#자식클래스 : 보다 구체적으로 구현
 class Student(Person):
     def __init__(self, name, phoneNumber, subject, studentID):
-        self.name = name
-        self.phoneNumber = phoneNumber
+        #부모 초기화 메소드 호출
+        Person.__init__(self,name, phoneNumber)
         self.subject = subject
         self.studentID = studentID
+    def printInfo(self): 
+        print("Info(Name:{0}, Phone Number: {1})".format(self.name, self.phoneNumber))
+        print("Info(학과:{0}, 학번: {1})".format(self.subject, self.studentID))
 
 
 p = Person("전우치", "010-222-1234")
