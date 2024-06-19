@@ -10,6 +10,9 @@ response = requests.get(url)
 
 soup = BeautifulSoup(response.text, "html.parser")
 
+#파일로 저장(append, read, write)
+f = open("daangn.txt", "a+", encoding = "utf-8")
+
 posts = soup.find_all("div", attrs={"class":"card-desc"})
 for post in posts:
     titleElem = post.find("h2", attrs={"class":"card-title"})
@@ -20,6 +23,7 @@ for post in posts:
     addr = addrElem.text.strip()
     #파이썬 3.6 f-string문법
     print(f"{title}, {price}, {addr}")
+    f.write(f"{title}, {price}, {addr}\n")
 
 #  <div class="card-desc">
 #       <h2 class="card-title">아이폰12프로맥스 512기가</h2>
